@@ -12,7 +12,7 @@ jobs:
       - name: Echo
         run: echo "Hello World Create a Release Tag"
 
-      - uses: ./github/actions/create_release_tag.yml
+      - uses: ./actions/create_release_tag.yml
         id: "tag_create"
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
