@@ -2,9 +2,9 @@ name: Create a Release Tag
 
 on:
   push:
-    # # Sequence of patterns matched against refs/tags
-    # tags:
-    #   - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
   create-tag:
@@ -12,38 +12,39 @@ jobs:
     name: Create a Release Tag
 
     steps:
-        - name: Echo
-          run: echo "Hello World Create a Release Tag"
-    #   - name: Checkout code
-    #     uses: actions/checkout@v4
-    #     with:
-    #       fetch-depth: 0
+      - name: Echo
+        run: echo "Hello World Create a Release Tag"
 
-    #   - name: Setup tag version for Non-Prod/Live Environment
-    #     if: ${{ startsWith(github.ref, 'refs/heads/') && github.ref_name != 'live' }}
-    #     run: |
-    #       echo "Tag=v${{ vars.TAG_VERSION }}-prerelease.${{ github.run_number }}" >> $GITHUB_ENV
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    #   - name: Setup tag version for Live Environment
-    #     if: ${{ startsWith(github.ref, 'refs/heads/') && github.ref_name == 'live' }}
-    #     run: |
-    #       echo "Tag=${{ vars.TAG_VERSION }}-${{ github.ref_name }}" >> $GITHUB_ENV
+      - name: Setup tag version for Non-Prod/Live Environment
+        if: ${{ startsWith(github.ref, 'refs/heads/') && github.ref_name != 'live' }}
+        run: |
+          echo "Tag=v${{ vars.TAG }}-prerelease.${{ github.run_number }}" >> $GITHUB_ENV
 
-    #   - name: Create Release
-    #     id: create_release
-    #     uses: actions/create-release@latest
-    #     env:
-    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-    #     with:
-    #       tag_name: "v${{ env.Tag }}"
-    #       release_name: Release ${{ github.ref }}
-    #       body: |
-    #         Changes in this Release
-    #         - First Change
-    #         - Second Change
-    #       draft: false
-    #       prerelease: false
+      - name: Setup tag version for Live Environment
+        if: ${{ startsWith(github.ref, 'refs/heads/') && github.ref_name == 'live' }}
+        run: |
+          echo "Tag=${{ vars.TAG }}-${{ github.ref_name }}" >> $GITHUB_ENV
 
-    #   - name: Output New Tag
-    #     run: |
-    #       echo "New tag: ${{ steps.create_release.outputs.new_tag }}"
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: "v${{ env.Tag }}"
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: false
+
+      - name: Output New Tag
+        run: |
+          echo "New tag: ${{ steps.create_release.outputs.new_tag }}"
