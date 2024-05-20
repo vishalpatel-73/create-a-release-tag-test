@@ -4,6 +4,7 @@ inputs:
   github_token:
     description: 'GitHub token for authentication'
     required: true
+    default: "${{ github.token }}"
   tag:
     description: 'The name of the tag to create'
     required: true
