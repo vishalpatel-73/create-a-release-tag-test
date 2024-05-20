@@ -1,0 +1,21 @@
+name: Test Create a Release Tag
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Create a Release Tag
+
+    steps:
+      - name: Echo
+        run: echo "Hello World Create a Release Tag"
+
+      - uses: vishalpatel-73/create-a-release-tag-test
+        id: "tag_create"
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: "1.0"
+        #   message: "Test"
+        #   tag_exists_error: "No Error"
