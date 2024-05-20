@@ -23,7 +23,7 @@ jobs:
       - name: Setup tag version for Non-Prod/Live Environment
         if: ${{ startsWith(github.ref, 'refs/heads/') && github.ref_name != 'live' }}
         run: |
-          echo "Tag=v${{ vars.TAG }}-prerelease.${{ github.run_number }}" >> $GITHUB_ENV
+          echo "Tag=${{ vars.TAG }}-prerelease.${{ github.run_number }}" >> $GITHUB_ENV
 
       - name: Setup tag version for Live Environment
         if: ${{ startsWith(github.ref, 'refs/heads/') && github.ref_name == 'live' }}
@@ -32,7 +32,7 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: actions/create-release@latest
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
