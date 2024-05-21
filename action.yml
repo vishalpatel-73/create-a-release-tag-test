@@ -39,6 +39,8 @@ runs:
   - name: Create Tag
     shell: bash
     run: |
-        git tag -a 2.0 -m 2.0-release
-        git push origin 2.0
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git tag -a 2.1 -m 2.1-release
+        git push origin 2.1
       
