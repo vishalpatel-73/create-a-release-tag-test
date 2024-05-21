@@ -3,7 +3,8 @@ FROM alpine:3.19
 # Install required packages
 RUN apk --no-cache add \
     git \
-    curl
+    curl \
+    jq
 
 # Copy the entrypoint script
 COPY entrypoint.sh /entrypoint.sh
