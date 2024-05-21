@@ -3,6 +3,8 @@
 # Fail on any error
 set -e
 
+cd "${GITHUB_WORKSPACE}" || exit
+
 # Get inputs
 GITHUB_TOKEN="${INPUT_GITHUB_TOKEN}"
 TAG="${INPUT_TAG}"
