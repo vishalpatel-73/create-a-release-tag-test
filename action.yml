@@ -26,5 +26,6 @@ runs:
   - uses: actions/checkout@v2
   - name: Run script file
     run: |
-      ./entrypoint.sh
+     chmod +x ./entrypoint.sh
+     ./entrypoint.sh
     shell: bash
