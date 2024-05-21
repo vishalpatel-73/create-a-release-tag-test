@@ -5,27 +5,26 @@ inputs:
     description: 'The name of the tag to create'
     required: true
 
-outputs:
-  tag_exists:
-    description: "The tag already existed."
-runs:
-  using: "docker"
-  image: "Dockerfile"
-branding:
-  icon: "tag"
-  color: "blue"
-
+# outputs:
+#   tag_exists:
+#     description: "The tag already existed."
 # runs:
-#   using: "composite"
-#   steps:
-#   - id: createsrelease
-#     run: |
-#       echo "Hello World Create a Release Tag: ${{ inputs.tag }} "
-#     shell: bash
+#   using: "docker"
+#   image: "Dockerfile"
+# branding:
+#   icon: "tag"
+#   color: "blue"
 
-#   - uses: actions/checkout@v2
-#   - name: Run script file
-#     run: |
-#       chmod +x ./entrypoint.sh
-#       ./entrypoint.sh
-#     shell: bash
+runs:
+  using: "composite"
+  steps:
+  - id: createsrelease
+    run: |
+      echo "Hello World Create a Release Tag: ${{ inputs.tag }} "
+    shell: bash
+
+  - name: Run script file
+    run: |
+      chmod +x ./entrypoint.sh
+      ./entrypoint.sh
+    shell: bash
