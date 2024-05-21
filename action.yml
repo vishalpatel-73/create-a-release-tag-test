@@ -23,8 +23,8 @@ runs:
       echo "Hello World Create a Release Tag: ${{ inputs.tag }} "
     shell: bash
 
+  - uses: actions/checkout@v2
   - name: Run script file
     run: |
-      chmod +x ./entrypoint.sh
       ./entrypoint.sh
     shell: bash
