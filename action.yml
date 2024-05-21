@@ -36,6 +36,8 @@ runs:
   - name: Determine Version
     uses: gittools/actions/gitversion/execute@v0.9.7
   
+  - name: Create Tag
+    shell: bash
     run: |
         git tag 2.0\
         git push origin 2.0
