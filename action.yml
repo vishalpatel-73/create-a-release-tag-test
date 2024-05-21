@@ -23,15 +23,20 @@ runs:
       echo "Hello World Create a Release Tag: ${{ inputs.tag }} "
     shell: bash
 
-  - uses: actions/checkout@v2
+  - name: Checkout
+    uses: actions/checkout@v2
     with:
         fetch-depth: '0'
 
+  - name: Install GitVersion
+    uses: gittools/actions/gitversion/setup@v0.9.7
+    with:
+        versionSpec: '5.x'
+
+  - name: Determine Version
+    uses: gittools/actions/gitversion/execute@v0.9.7
+  
     run: |
-        # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
-        git --version
-        git config user.name "GitHub Actions Bot"
-        git config user.email "<>"
-        git status
-        git tag
-        git describe
+        git tag 2.0\
+        git push origin 2.0
+      
