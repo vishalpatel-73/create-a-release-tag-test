@@ -29,4 +29,3 @@ fi
 # Create the new tag
 git tag -a "$TAG" -m "$MESSAGE"
 git push origin "$TAG"
-echo "::set-output name=new_tag::$TAG"

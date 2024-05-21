@@ -13,9 +13,11 @@ jobs:
         run: echo "Hello World Create a Release Tag"
 
       - name: Create a Release Tag
-        uses: vishalpatel-73/create-a-release-tag-test@main
+        uses: vishalpatel-73/create-a-release-tag-test@v1.2
         with:
-          tag: "Test Tag"
+          github_token: ${{ secrets.GH_PAT }}
+          tag: "1.0.0-prerelease"
+          
 
       # - uses: ./actions/create_release_tag.yml
       #   id: "tag_create"
