@@ -4,9 +4,10 @@
 set -e
 
 # Get inputs
-TAG="v1.1_Release"
-MESSAGE="v1.1_Release"
-TAG_EXISTS_ERROR="Tag aleady exists"
+GITHUB_TOKEN="${INPUT_GITHUB_TOKEN}"
+TAG="${INPUT_TAG}"
+MESSAGE="${INPUT_MESSAGE}"
+TAG_EXISTS_ERROR="${INPUT_TAG_EXISTS_ERROR}"
 
 # Configure Git
 git config --global user.name "github-actions[bot]"
