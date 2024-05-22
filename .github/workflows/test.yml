@@ -15,12 +15,4 @@ jobs:
       - name: Create a Release Tag
         uses: vishalpatel-73/create-a-release-tag-test@v1.1
         with:
-          tag: "Test Tag"
-
-      # - uses: ./actions/create_release_tag.yml
-      #   id: "tag_create"
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     tag: "1.0"
-        #   message: "Test"
-        #   tag_exists_error: "No Error"
+          tag: "v1.0.${{ secrets.GITHUB_TOKEN }}-prerelease"

@@ -1,46 +1,43 @@
-name: 'Basecone - Create a Release Tag'
-description: 'Create a Release Tag'
+name: "Basecone - Create a Release Tag"
+description: "Create a Release Tag"
 inputs:
   tag:
-    description: 'The name of the tag to create'
+    description: "The name of the tag to create"
     required: true
-
-# outputs:
-#   tag_exists:
-#     description: "The tag already existed."
-# runs:
-#   using: "docker"
-#   image: "Dockerfile"
-# branding:
-#   icon: "tag"
-#   color: "blue"
+  message:
+    description: "The message associated with the tag"
+    required: false
+  # tag_exists_error:
+  #   description: 'Whether to throw an error if the tag already exists'
+  #   required: false
+  #   default: 'false'
 
 runs:
   using: "composite"
   steps:
-  - id: createsrelease
-    run: |
-      echo "Hello World Create a Release Tag: ${{ inputs.tag }} "
-    shell: bash
+    - id: createsrelease
+      run: |
+        echo "Tag: ${{ inputs.tag }} "
+        echo "Message: ${{ inputs.message }} "
+      shell: bash
 
-  - name: Checkout
-    uses: actions/checkout@v2
-    with:
-        fetch-depth: '0'
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: "0"
 
-  - name: Install GitVersion
-    uses: gittools/actions/gitversion/setup@v0.9.7
-    with:
-        versionSpec: '5.x'
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.7
+      with:
+        versionSpec: "5.x"
 
-  - name: Determine Version
-    uses: gittools/actions/gitversion/execute@v0.9.7
-  
-  - name: Create Tag
-    shell: bash
-    run: |
+    - name: Determine Version
+      uses: gittools/actions/gitversion/execute@v0.9.7
+
+    - name: Create Tag
+      shell: bash
+      run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git tag -a v2.1 -m v2.1-release
-        git push origin v2.1
-      
+        git tag -a ${{ inputs.tag }} -m ${{ inputs.tag }}
+        git push origin ${{ inputs.tag }}
