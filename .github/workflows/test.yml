@@ -15,4 +15,5 @@ jobs:
       - name: Create a Release Tag
         uses: vishalpatel-73/create-a-release-tag-test@v1.1
         with:
-          tag: "v1.0.${{ secrets.GITHUB_TOKEN }}-prerelease"
+          tag: "v1.0.${{ github.run_number }}-prerelease"
+          message: "Latest release"
